@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+</head>
+<body>
+<h2>Common info</h2>
+<!-- Common info (Общая информация) -->
+<p>
+    User: <span sec:authentication="principal.username"></span>
+    <br>
+    Roles: <span sec:authentication="principal.authorities"></span>
+</p>
+<p>
+    <a th:href="@{managers}">Manager info page</a>
+</p>
+<!--Мы добавили кнопку-ссылку для перехода на страницу менеджера-->
+<p>
+    <a th:href="@{admins}">Admin info page</a>
+</p>
+<!--Мы добавили кнопку-ссылку для перехода на страницу админа-->
+<hr>
+<div>
+    <span>Some test</span><br>
+    <span>Some test</span><br>
+    <span>Some test</span>
+</div>
+<hr>
+
+<form action="#" th:action="@{logout}" method="post">
+    <input type="submit" value="Exit">
+</form>
+
+</body>
+</html>
