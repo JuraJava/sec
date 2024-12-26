@@ -14,14 +14,18 @@
     <br>
     Roles: <span sec:authentication="principal.authorities"></span>
 </p>
-<p>
-    <a th:href="@{managers}">Manager info page</a>
-</p>
-<!--Мы добавили кнопку-ссылку для перехода на страницу менеджера-->
-<p>
-    <a th:href="@{admins}">Admin info page</a>
-</p>
-<!--Мы добавили кнопку-ссылку для перехода на страницу админа-->
+<div sec:authorize="hasRole('MANAGER')">
+    <p>
+        <a th:href="@{managers}">Manager info page</a>
+    </p>
+    <!--Мы добавили кнопку-ссылку для перехода на страницу менеджера-->
+</div>
+<div sec:authorize="hasRole('ADMIN')">
+    <p>
+        <a th:href="@{admins}">Admin info page</a>
+    </p>
+    <!--Мы добавили кнопку-ссылку для перехода на страницу админа-->
+</div>
 <hr>
 <div>
     <span>Some test</span><br>

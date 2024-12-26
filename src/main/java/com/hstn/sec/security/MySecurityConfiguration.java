@@ -55,6 +55,11 @@ public class MySecurityConfiguration {
                 // Эта верхняя строка означает, что на форму для логина
                 // может зайти любой, а чтобы пойти дальше нужно будет залогиниться
                 .logout(logout -> logout.permitAll()
+                )
+                .exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied-page")
+
+
                 );
         return http.build();
     }
