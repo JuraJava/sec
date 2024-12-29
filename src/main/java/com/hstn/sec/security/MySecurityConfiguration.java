@@ -34,9 +34,19 @@ public class MySecurityConfiguration {
 //    }
 ////    Закомментировали с того момента как нам стало необходимо брать пароли и роли из БД
 
+//    @Bean
+//    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+//        return new JdbcUserDetailsManager(dataSource);
+//    }
+//// После того как мы создали и стали использовать свои таблице в БД
+
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+        jdbcUserDetailsManager.setUsersByUsernameQuery("select client_name, pass, enabled from clients where client_name=?");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select client_name, role from roles where client_name=?");
+
+        return jdbcUserDetailsManager;
     }
 
 
